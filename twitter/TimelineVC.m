@@ -9,6 +9,7 @@
 
 #import "TimelineVC.h"
 #import "TweetCell.h"
+#import "TweetVC.h"
 
 @interface TimelineVC ()
 
@@ -115,6 +116,7 @@
     return cell;
 }
 
+
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -157,20 +159,25 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)myTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [myTableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Tweet *tweet = self.tweets[indexPath.row];
+    TweetVC *detailViewController  = [[TweetVC alloc] initWithTweet:tweet];
+    [self.navigationController pushViewController:detailViewController animated:YES];
+
+    //[myTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-/*
  #pragma mark - Navigation
- 
+
+/*
  // In a story board-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
+ NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+ TweetVC *detailViewController = (TweetVC *)segue.destinationViewController;
+ detailViewController.tweetDetail = [self.tweets objectAtIndex:indexPath.row];
  }
- 
- */
+*/
 
 #pragma mark - Private methods
 

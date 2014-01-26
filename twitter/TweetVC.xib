@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TweetVC">
+            <connections>
+                <outlet property="favorites" destination="5h9-7L-wR0" id="vEB-Gl-R3w"/>
+                <outlet property="labelAuthorName" destination="aJO-qV-zBZ" id="mLe-Ts-KFV"/>
+                <outlet property="labelDate" destination="bgD-GO-l3I" id="Lkk-ae-6bw"/>
+                <outlet property="labelScreenName" destination="GhQ-i1-8oW" id="hmV-Rg-miq"/>
+                <outlet property="labelTweet" destination="DUw-MV-k59" id="UX0-En-0hV"/>
+                <outlet property="profilePic" destination="CEj-Qn-jAJ" id="yEp-lx-9XF"/>
+                <outlet property="retweet" destination="WmB-z0-Ku5" id="hFW-3e-01Q"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Tweet" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="285" translatesAutoresizingMaskIntoConstraints="NO" id="DUw-MV-k59">
+                    <rect key="frame" x="15" y="164" width="285" height="113"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CEj-Qn-jAJ">
+                    <rect key="frame" x="15" y="78" width="70" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="25s-Fh-5ga"/>
+                        <constraint firstAttribute="height" constant="70" id="kTA-Jv-GZe"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJO-qV-zBZ">
+                    <rect key="frame" x="93" y="78" width="207" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Screen Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GhQ-i1-8oW">
+                    <rect key="frame" x="93" y="107" width="207" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgD-GO-l3I">
+                    <rect key="frame" x="20" y="285" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1oN-4z-Hfb">
+                    <rect key="frame" x="20" y="314" width="280" height="3"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1d5-g7-IiD">
+                    <rect key="frame" x="20" y="354" width="280" height="3"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Retweet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WmB-z0-Ku5">
+                    <rect key="frame" x="20" y="325" width="43" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Favorites" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5h9-7L-wR0">
+                    <rect key="frame" x="159" y="325" width="35" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="RETWEET" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SkY-Al-G01">
+                    <rect key="frame" x="71" y="325" width="75" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="FAVORITES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qil-My-cId">
+                    <rect key="frame" x="202" y="325" width="82" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="bgD-GO-l3I" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="519-YY-G34"/>
+                <constraint firstAttribute="trailing" secondItem="1oN-4z-Hfb" secondAttribute="trailing" constant="20" id="CEC-fP-SEO"/>
+                <constraint firstAttribute="trailing" secondItem="DUw-MV-k59" secondAttribute="trailing" constant="20" id="CJo-0k-Gbq"/>
+                <constraint firstAttribute="trailing" secondItem="bgD-GO-l3I" secondAttribute="trailing" constant="20" id="K7R-42-j0a"/>
+                <constraint firstItem="5h9-7L-wR0" firstAttribute="leading" secondItem="SkY-Al-G01" secondAttribute="trailing" constant="13" id="LJY-bK-Ve3"/>
+                <constraint firstAttribute="trailing" secondItem="aJO-qV-zBZ" secondAttribute="trailing" constant="20" id="TEn-CI-Bq0"/>
+                <constraint firstItem="1oN-4z-Hfb" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="Vdr-gD-ouC"/>
+                <constraint firstItem="qil-My-cId" firstAttribute="leading" secondItem="5h9-7L-wR0" secondAttribute="trailing" constant="8" id="WMw-x8-0yE"/>
+                <constraint firstItem="DUw-MV-k59" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="15" id="Xc4-g1-KC6"/>
+                <constraint firstItem="aJO-qV-zBZ" firstAttribute="leading" secondItem="CEj-Qn-jAJ" secondAttribute="trailing" constant="8" id="Xyy-N8-PUA"/>
+                <constraint firstAttribute="trailing" secondItem="GhQ-i1-8oW" secondAttribute="trailing" constant="20" id="c9e-ra-mnm"/>
+                <constraint firstItem="SkY-Al-G01" firstAttribute="leading" secondItem="WmB-z0-Ku5" secondAttribute="trailing" constant="8" id="fuk-WL-nDu"/>
+                <constraint firstItem="GhQ-i1-8oW" firstAttribute="leading" secondItem="CEj-Qn-jAJ" secondAttribute="trailing" constant="8" id="iCW-oh-UNv"/>
+                <constraint firstItem="WmB-z0-Ku5" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="pSI-LK-9SM"/>
+                <constraint firstItem="CEj-Qn-jAJ" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="15" id="zDx-ww-J1P"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>
