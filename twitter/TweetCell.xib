@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="96" id="wIb-vb-3dH" customClass="TweetCell">
+            <rect key="frame" x="0.0" y="0.0" width="319" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wIb-vb-3dH" id="eCE-Um-065">
+                <rect key="frame" x="0.0" y="0.0" width="319" height="95"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="216" translatesAutoresizingMaskIntoConstraints="NO" id="Brw-mk-hNh">
+                        <rect key="frame" x="83" y="34" width="216" height="46"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Tweet">
+                                <attributes>
+                                    <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qab-Ny-hDy">
+                        <rect key="frame" x="83" y="9" width="70" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UserID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ylo-im-SlA">
+                        <rect key="frame" x="140" y="9" width="159" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lxX-DK-Zcw">
+                        <rect key="frame" x="15" y="10" width="55" height="55"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Brw-mk-hNh" secondAttribute="trailing" constant="20" id="HuC-yi-f47"/>
+                    <constraint firstItem="ylo-im-SlA" firstAttribute="top" secondItem="eCE-Um-065" secondAttribute="top" constant="9" id="Mc5-be-8Th"/>
+                    <constraint firstItem="Brw-mk-hNh" firstAttribute="top" secondItem="qab-Ny-hDy" secondAttribute="bottom" constant="4" id="Ouc-oY-l9C"/>
+                    <constraint firstAttribute="bottom" secondItem="Brw-mk-hNh" secondAttribute="bottom" constant="15" id="UY2-Y0-CUb"/>
+                    <constraint firstItem="Brw-mk-hNh" firstAttribute="top" secondItem="ylo-im-SlA" secondAttribute="bottom" constant="4" id="b1l-L4-2Vq"/>
+                    <constraint firstItem="Brw-mk-hNh" firstAttribute="top" secondItem="ylo-im-SlA" secondAttribute="bottom" constant="4" id="c5H-mO-dHb"/>
+                    <constraint firstItem="qab-Ny-hDy" firstAttribute="top" secondItem="eCE-Um-065" secondAttribute="top" constant="9" id="dm6-Qz-Y0V"/>
+                    <constraint firstAttribute="trailing" secondItem="ylo-im-SlA" secondAttribute="trailing" constant="11" id="njV-ov-4gt"/>
+                    <constraint firstItem="Brw-mk-hNh" firstAttribute="leading" secondItem="eCE-Um-065" secondAttribute="leading" constant="83" id="psT-YE-mov"/>
+                    <constraint firstItem="qab-Ny-hDy" firstAttribute="leading" secondItem="eCE-Um-065" secondAttribute="leading" constant="83" id="zh9-Pa-LjV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imgProfile" destination="lxX-DK-Zcw" id="jAV-K0-eGn"/>
+                <outlet property="labelAuthorID" destination="ylo-im-SlA" id="tEw-EJ-iUO"/>
+                <outlet property="labelAuthorName" destination="qab-Ny-hDy" id="2cE-YM-JtE"/>
+                <outlet property="labelTweet" destination="Brw-mk-hNh" id="R4i-qZ-smV"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
