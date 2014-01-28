@@ -10,6 +10,7 @@
 #import "TimelineVC.h"
 #import "TweetCell.h"
 #import "TweetVC.h"
+#import "TweetComposeVC.h"
 
 @interface TimelineVC ()
 
@@ -186,7 +187,9 @@
 }
 
 - (void)onTweetButton {
+    [self.navigationController pushViewController:[[TweetComposeVC alloc] init] animated:YES];
 }
+
 
 - (void)reload {
     [[TwitterClient instance] homeTimelineWithCount:20 sinceId:0 maxId:0 success:^(AFHTTPRequestOperation *operation, id response) {

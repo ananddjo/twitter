@@ -11,6 +11,7 @@
 @interface TweetVC : UIViewController
 
 @property (strong, nonatomic) Tweet *tweetDetail;
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 
 - (id) initWithTweet:(Tweet *) tweetObj;
 

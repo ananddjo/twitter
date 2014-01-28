@@ -7,6 +7,7 @@
 //
 
 #import "TweetVC.h"
+#import "TweetComposeVC.h"
 
 @interface TweetVC ()
 
@@ -20,6 +21,7 @@
 @end
 
 @implementation TweetVC
+@synthesize scrollView;
 
 - (id)initWithTweet:(Tweet *)tweetObj
 {
@@ -44,8 +46,8 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBar.topItem.title = @"";
+    self.navigationItem.title = @"Tweet";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Tweet" style:UIBarButtonItemStylePlain target:self action:@selector(onTweetButton)];
-    //NSLog(@"%@",self.tweetDetail);
     
     [self updateViewWithTweets];
     // Do any additional setup after loading the view from its nib.
@@ -58,6 +60,7 @@
 }
 
 - (void)onTweetButton {
+    [self.navigationController pushViewController:[[TweetComposeVC alloc] init] animated:YES];
 }
 
 - (void)updateViewWithTweets {
@@ -83,8 +86,6 @@
     [dateFromApp setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en-US"]];
     self.labelDate.text = [dateFromApp stringFromDate:tweetedDate];
     
-    NSLog(@"%@",[self.tweetDetail.data  objectForKey:@"retweet_count"]);
-    
     NSMutableString *retweetStr = [[NSMutableString alloc]init];
     NSNumber *retweetNum = [self.tweetDetail.data  objectForKey:@"retweet_count"];
     [retweetStr appendString:[NSString stringWithFormat:@"%d",[retweetNum intValue]]];
@@ -95,6 +96,55 @@
     [favoritesStr appendString:[NSString stringWithFormat:@"%d",[favoriteNum intValue]]];
     self.favorites.text = favoritesStr;
     
+}
+- (IBAction)onReplyTweet:(id)sender {
+    NSString *statusID = [self.tweetDetail.data  objectForKey:@"id_str"];
+    TweetComposeVC *addTweetComposeVC = [[TweetComposeVC alloc] initWithReplyTweet:self.labelScreenName.text replyStatusID:statusID];
+    [self.navigationController pushViewController:addTweetComposeVC animated:YES];
+    
+}
+- (IBAction)onRetweet:(id)sender {
+    
+    NSString *statusID = [self.tweetDetail.data  objectForKey:@"id_str"];
+    [[TwitterClient instance] doRetweet:statusID success:^(AFHTTPRequestOperation *operation, id response) {
+        NSLog(@"%@", response);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter"
+                                                        message:@"Status Retweeted!"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Could not retweet!"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }];
+    
+}
+- (IBAction)onFavorite:(id)sender {
+    
+    NSString *statusID = [self.tweetDetail.data  objectForKey:@"id_str"];
+    [[TwitterClient instance] makeFavorite:statusID success:^(AFHTTPRequestOperation *operation, id response) {
+        NSLog(@"%@", response);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter"
+                                                        message:@"Marked as favorite!"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Your tweet was not favorited!"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }];
 }
 
 @end
