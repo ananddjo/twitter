@@ -64,50 +64,31 @@
 }
 
 - (void)updateViewWithTweets {
-    self.labelAuthorName.text = [[self.tweetDetail.data  objectForKey:@"user"]  objectForKey:@"name"];
-    NSMutableString *screenName = [[NSMutableString alloc]init];
-    [screenName appendString:@"@"];
-    [screenName appendString:[[self.tweetDetail.data  objectForKey:@"user"]  objectForKey:@"screen_name"]];
-    self.labelScreenName.text = screenName;
-    
-    NSData* imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[[self.tweetDetail.data  objectForKey:@"user"]  objectForKey:@"profile_image_url"]]];
-    UIImage* image = [[UIImage alloc] initWithData:imageData];
-    self.profilePic.image = image;
+    self.labelAuthorName.text = self.tweetDetail.authorName;
+    self.labelScreenName.text = self.tweetDetail.screenName;
+    self.profilePic.image = self.tweetDetail.imgAuthor;
     self.labelTweet.text = self.tweetDetail.text;
-    
-    NSDateFormatter *dateFromTwitter = [[NSDateFormatter alloc] init];
-    [dateFromTwitter setDateFormat:@"EEE MMM dd HH:mm:ss '+0000' yyyy"];
-    [dateFromTwitter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en-US"]];
-    NSString *dateString = [self.tweetDetail.data objectForKey:@"created_at"];
-    NSDate *tweetedDate = [dateFromTwitter dateFromString:dateString];
-    
-    NSDateFormatter *dateFromApp = [[NSDateFormatter alloc] init];
-    [dateFromApp setDateFormat:@"MM/dd/yy, hh:mm a"];
-    [dateFromApp setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en-US"]];
-    self.labelDate.text = [dateFromApp stringFromDate:tweetedDate];
+    self.labelDate.text = self.tweetDetail.createdTime;
     
     NSMutableString *retweetStr = [[NSMutableString alloc]init];
-    NSNumber *retweetNum = [self.tweetDetail.data  objectForKey:@"retweet_count"];
-    [retweetStr appendString:[NSString stringWithFormat:@"%d",[retweetNum intValue]]];
+    [retweetStr appendString:[NSString stringWithFormat:@"%d",[self.tweetDetail.retweetNum intValue]]];
     self.retweet.text = retweetStr;
     
     NSMutableString *favoritesStr = [[NSMutableString alloc]init];
-    NSNumber *favoriteNum = [self.tweetDetail.data  objectForKey:@"favorite_count"];
-    [favoritesStr appendString:[NSString stringWithFormat:@"%d",[favoriteNum intValue]]];
+    [favoritesStr appendString:[NSString stringWithFormat:@"%d",[self.tweetDetail.favoriteNum intValue]]];
     self.favorites.text = favoritesStr;
     
 }
 - (IBAction)onReplyTweet:(id)sender {
-    NSString *statusID = [self.tweetDetail.data  objectForKey:@"id_str"];
-    TweetComposeVC *addTweetComposeVC = [[TweetComposeVC alloc] initWithReplyTweet:self.labelScreenName.text replyStatusID:statusID];
+    TweetComposeVC *addTweetComposeVC = [[TweetComposeVC alloc] initWithReplyTweet:self.tweetDetail.screenName replyStatusID:self.tweetDetail.statusID];
     [self.navigationController pushViewController:addTweetComposeVC animated:YES];
     
 }
 - (IBAction)onRetweet:(id)sender {
     
-    NSString *statusID = [self.tweetDetail.data  objectForKey:@"id_str"];
+    NSString *statusID = self.tweetDetail.statusID;
     [[TwitterClient instance] doRetweet:statusID success:^(AFHTTPRequestOperation *operation, id response) {
-        NSLog(@"%@", response);
+        //NSLog(@"%@", response);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter"
                                                         message:@"Status Retweeted!"
                                                        delegate:nil
@@ -115,7 +96,7 @@
                                               otherButtonTitles:nil];
         [alert show];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
+        //NSLog(@"%@", error);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:@"Could not retweet!"
                                                        delegate:nil
@@ -127,9 +108,9 @@
 }
 - (IBAction)onFavorite:(id)sender {
     
-    NSString *statusID = [self.tweetDetail.data  objectForKey:@"id_str"];
+    NSString *statusID = self.tweetDetail.statusID;
     [[TwitterClient instance] makeFavorite:statusID success:^(AFHTTPRequestOperation *operation, id response) {
-        NSLog(@"%@", response);
+        //NSLog(@"%@", response);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter"
                                                         message:@"Marked as favorite!"
                                                        delegate:nil
@@ -137,7 +118,7 @@
                                               otherButtonTitles:nil];
         [alert show];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
+        //NSLog(@"%@", error);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:@"Your tweet was not favorited!"
                                                        delegate:nil

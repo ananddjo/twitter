@@ -13,7 +13,11 @@ extern NSString *const UserDidLogoutNotification;
 
 @interface User : RestObject
 
+
 + (User *)currentUser;
 + (void)setCurrentUser:(User *)currentUser;
+
+@property (nonatomic, strong, readonly) NSString *authorName;
+@property (nonatomic, strong, readonly) NSString *screenName;
 
 @end

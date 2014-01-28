@@ -68,11 +68,8 @@
 - (void) updateViewWithUserInformation
 {
     User *userContext = [User currentUser];
-    self.labelName.text = [userContext  objectForKey:@"name"];
-    NSMutableString *screenName = [[NSMutableString alloc]init];
-    [screenName appendString:@"@"];
-    [screenName appendString:[userContext objectForKey:@"screen_name"]];
-    self.labelScreenName.text = screenName;
+    self.labelName.text = userContext.authorName;
+    self.labelScreenName.text = userContext.screenName;
     
     NSData* imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[userContext  objectForKey:@"profile_image_url"]]];
     UIImage* image = [[UIImage alloc] initWithData:imageData];
@@ -87,7 +84,7 @@
     }
     
     [[TwitterClient instance] doTweet:self.txtTweet.text inReplyToStatusId:replyStatusId success:^(AFHTTPRequestOperation *operation, id response) {
-        NSLog(@"%@", response);
+        //NSLog(@"%@", response);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter"
                                                         message:@"Status Updated!"
                                                        delegate:self
@@ -95,7 +92,7 @@
                                               otherButtonTitles:nil];
         [alert show];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
+        //NSLog(@"%@", error);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:@"Could not tweet!"
                                                        delegate:nil

@@ -46,8 +46,6 @@
     tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:@"TweetCell"];
 
-    
-    // must set delegate & dataSource, otherwise the the table will be empty and not responsive
     tableView.delegate = self;
     tableView.dataSource = self;
     
@@ -87,33 +85,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)myTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    //static NSString *cellIdentifier = @"HistoryCell";
-    
     static NSString *CellIdentifier = @"TweetCell";
     TweetCell *cell = (TweetCell *)[myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //if (cell == nil) {
-    //    cell = [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    //}
     Tweet *tweet = self.tweets[indexPath.row];
     cell.labelTweet.text = tweet.text;
-    cell.labelAuthorName.text = [[tweet.data  objectForKey:@"user"]  objectForKey:@"name"];
-    //cell.labelAuthorName.frame.size.width = 10; // RESET WIDTH
-    //CGFloat widthAuthorName =  cell.labelAuthorName.frame.size.width + 10;
-    //cell.labelAuthorName.frame = CGRectMake(83, 9, widthAuthorName,21);
-    NSMutableString *screenName = [[NSMutableString alloc]init];
-    [screenName appendString:@"@"];
-    [screenName appendString:[[tweet.data  objectForKey:@"user"]  objectForKey:@"screen_name"]];
-    cell.labelAuthorID.text = screenName;
-    
-    NSData* imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[[tweet.data  objectForKey:@"user"]  objectForKey:@"profile_image_url"]]];
-    UIImage* image = [[UIImage alloc] initWithData:imageData];
-    cell.imgProfile.image = image;
-    
-    //cell.labelAuthorID.frame.size.width = 10; // RESET WIDTH
-    //CGFloat widthScreenName = cell.labelAuthorID.frame.size.width + 10;
-    //cell.labelAuthorName.frame = CGRectMake(83 + widthAuthorName + 10, 9, widthScreenName, 21);
-    
+    cell.labelAuthorName.text = tweet.authorName;
+    cell.labelAuthorID.text = tweet.screenName;
+    cell.imgProfile.image = tweet.imgAuthor;
     return cell;
 }
 

@@ -48,4 +48,15 @@ static User *_currentUser;
     }
 }
 
+- (NSString *)authorName {
+    return [_currentUser  objectForKey:@"name"];
+}
+
+- (NSString *)screenName {
+    NSMutableString *screenName = [[NSMutableString alloc]init];
+    [screenName appendString:@"@"];
+    [screenName appendString:[_currentUser objectForKey:@"screen_name"]];
+    return screenName;
+}
+
 @end
