@@ -36,6 +36,7 @@
 
 - (id)initWithReplyTweet:(NSString *)screenName replyStatusID:(NSString *) statusID
 {
+    self = [super init];
     if (self) {
         self.replyStatusID = statusID;
         self.screenName = screenName;
