@@ -15,6 +15,8 @@
 @interface TimelineVC ()
 
 @property (nonatomic, strong) NSMutableArray *tweets;
+@property (nonatomic, strong) NSNumber *start;
+@property (nonatomic, strong) NSNumber *end;
 
 - (void)onSignOutButton;
 - (void)reload;
@@ -182,8 +184,40 @@
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        // Do nothing
+        NSLog(@"%@",error);
     }];
+}
+
+
+-(void) tableView:(UITableView *)myTableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int lastRow=[self.tweets count]-1;
+    if(([indexPath row] == lastRow)&&(lastRow<[self.tweets count]))
+    {
+        NSLog(@"Reached end of scroll ... Fetching new stories");
+        Tweet *tweet = [self.tweets lastObject];
+        [self reloadMoreTweets:[tweet.statusID doubleValue]];
+    }
+}
+
+/*
+-(void)scrollViewDidEndDecelerating:(UIView *)scrollView
+{
+    NSLog(@"Reached end of scroll ... Fetching new stories");
+    Tweet *tweet = [self.tweets lastObject];
+    [self reloadMoreTweets:[tweet.statusID doubleValue]];
+}
+*/
+
+- (void) reloadMoreTweets : (double)startStatusID {
+        [[TwitterClient instance] homeTimelineWithCount:20 sinceId:0 maxId:startStatusID success:^(AFHTTPRequestOperation *operation, id response) {
+            NSMutableArray *continueTweets = [Tweet tweetsWithArray:response];
+            //NSLog(@"array: %@", continueTweets.firstObject);
+            [self.tweets addObjectsFromArray:continueTweets];
+            [self.tableView reloadData];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            // Do nothing
+        }];
 }
 
 @end
