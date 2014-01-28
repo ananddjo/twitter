@@ -89,7 +89,7 @@
         NSLog(@"%@", response);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter"
                                                         message:@"Status Updated!"
-                                                       delegate:nil
+                                                       delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
@@ -111,13 +111,9 @@
     if (!self.replyStatusID) {
         self.txtTweet.text = @"";
     }
-    NSLog(@"textViewDidBeginEditing");
-    // never called...
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    //self.txtTweet.text
-    NSLog(@"textViewDidEndEditing");
     if (self.txtTweet.text.length == 0) {
         self.navigationItem.rightBarButtonItem.enabled = NO;
         self.txtTweet.text = @"What's Happening ?";
@@ -141,4 +137,11 @@
 - (IBAction)onTap:(id)sender {
     [self.view endEditing:YES];
 }
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+       [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 @end

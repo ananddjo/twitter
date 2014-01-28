@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TweetComposeVC : UIViewController <UITextViewDelegate>
+@interface TweetComposeVC : UIViewController <UITextViewDelegate, UIAlertViewDelegate>
 
 - (id) initWithReplyTweet:(NSString *)sceenName replyStatusID:(NSString *) statusID;
 
